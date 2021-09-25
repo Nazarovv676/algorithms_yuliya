@@ -1,0 +1,6 @@
+# Project exclude paths
+/core/menu/target/
+/core/utils/console/target/
+/data/person/target/
+/out/
+/work_1/target/

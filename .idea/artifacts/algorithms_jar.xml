@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="algorithms:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/algorithms_jar</output-path>
+    <root id="archive" name="algorithms.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/core/utils/console/src/main/java/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="algorithms" />
+      <element id="module-output" name="utils" />
+      <element id="module-output" name="work_1" />
+      <element id="module-output" name="menu" />
+      <element id="module-output" name="console" />
+      <element id="module-output" name="core" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/22.0.0/annotations-22.0.0.jar" path-in-jar="/" />
+      <element id="module-output" name="person" />
+    </root>
+  </artifact>
+</component>
