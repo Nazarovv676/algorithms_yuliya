@@ -9,6 +9,7 @@
         <module name="work_1" />
         <module name="console" />
         <module name="menu" />
+        <module name="feature" />
         <module name="person" />
       </profile>
     </annotationProcessing>

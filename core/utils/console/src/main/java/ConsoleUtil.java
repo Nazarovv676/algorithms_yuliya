@@ -3,14 +3,22 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Console;
 
 public abstract class ConsoleUtil {
-    private static final Console console;
+    private static final String _ANSI = "\033";
+    private static final String _ANSI_ESC = _ANSI + "[";
+    private static final String _LINES_SPLITTER = "\r\n|\r|\n";
+
+    private static final Console _console;
+
+    public static Console console() {
+        return _console;
+    }
 
     static {
-        console = System.console();
+        _console = System.console();
     }
 
     public static void clearConsole() {
-       System.out.print("\033[2J\033[0;0H");
+       System.out.print(_ANSI_ESC + "2J" + _ANSI_ESC + "0;0H");
     }
 
     public static void clearLines(int count) {
@@ -25,19 +33,19 @@ public abstract class ConsoleUtil {
     }
 
     public static void clearLine() {
-        System.out.print("\033[2K");
+        System.out.print(_ANSI_ESC + "2K");
         System.out.flush();
     }
 
     public static void moveCursorUp() {
-        System.out.print("\033[1A");
+        System.out.print(_ANSI_ESC + "1A");
         System.out.flush();
     }
 
     public static int readInt() {
         while (true) {
             try {
-                String val = console.readLine();
+                String val = _console.readLine();
                 return Integer.parseInt(val);
             } catch (NumberFormatException exc) {
                 clearLastLine();
@@ -49,11 +57,25 @@ public abstract class ConsoleUtil {
         while (true) {
             try {
                 System.out.print(placeholder + " ");
-                String val = console.readLine();
+                String val = _console.readLine();
                 return Integer.parseInt(val);
             } catch (NumberFormatException exc) {
-                clearLastLine();
+                ConsoleUtil.clearLines(placeholder.split(_LINES_SPLITTER).length);
             }
         }
+    }
+
+    public  static int readInt(@NotNull String placeholder, int min, int max) {
+        int res;
+        boolean firstTime = true;
+        do {
+            if(!firstTime) {
+                ConsoleUtil.clearLines(placeholder.split(_LINES_SPLITTER).length);
+            }
+            res = ConsoleUtil.readInt(placeholder);
+            firstTime = false;
+        } while (res < min || res > max);
+
+        return res;
     }
 }

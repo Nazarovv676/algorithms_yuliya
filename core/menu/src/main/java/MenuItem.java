@@ -8,16 +8,20 @@ interface MenuItemCallback {
 }
 
 public class MenuItem {
-    public String label;
-    public MenuItemCallback onSelected;
+    public final String label;
+    public final MenuItemCallback onSelected;
+    public final boolean reshowAfterCallback;
 
-    public MenuItem(@NotNull String label) {
+    public  MenuItem(@NotNull String label) {
         this.label = label;
+        this.reshowAfterCallback = false;
+        onSelected = null;
     }
 
-    public MenuItem(@NotNull String label, @NotNull MenuItemCallback onSelected) {
+    public MenuItem(@NotNull String label, @NotNull MenuItemCallback onSelected, boolean reshowAfterCallback) {
         this.label = label;
         this.onSelected = onSelected;
+        this.reshowAfterCallback = reshowAfterCallback;
     }
 
     @Override
